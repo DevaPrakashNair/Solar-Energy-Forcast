@@ -1,96 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seban_app/ui/login.dart';
+import 'bloc/loginbloc.dart';
+import 'bloc/logoutBloc.dart';
+import 'bloc/logoutUserBloc.dart';
+import 'bloc/regBloc.dart';
 
+void main() => runApp(const AppHome());
 
-/// Flutter code sample for [showDialog].
-
-void main() => runApp(const ShowDialogExampleApp());
-
-class ShowDialogExampleApp extends StatelessWidget {
-  const ShowDialogExampleApp({super.key});
+class AppHome extends StatefulWidget {
+  const AppHome({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DialogExample(),
-    );
-  }
+  State<AppHome> createState() => _AppHomeState();
 }
 
-class DialogExample extends StatelessWidget {
-  DialogExample({super.key});
+class _AppHomeState extends State<AppHome> {
+  var token, role;
 
-  TextEditingController _textFieldController = TextEditingController();
+  void initState() {
 
-  void _sendDataToServer() async {
-    String inputValue = _textFieldController.text;
-    var response = await http.post(
-      Uri.parse('http://127.0.0.1:5000/predict'),
-      body: {'inputValue': inputValue},
-    );
-    print(response);
+    super.initState();
   }
 
-  @override
+
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('showDialog Sample')),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            TextField(
-              controller: _textFieldController,
-              onTap: (){},
-            ),
-            Center(
-              child: OutlinedButton(
-                onPressed: (){
-                  _sendDataToServer();
-                },
-                child: const Text('Open Dialog'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future<void> _dialogBuilder(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Basic dialog title'),
-          content: const Text(
-            'A dialog is a type of modal window that\n'
-                'appears in front of app content to\n'
-                'provide critical information, or prompt\n'
-                'for a decision to be made.',
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
+        BlocProvider<RegBloc>(create: (context) => RegBloc()),
+        BlocProvider<LogOutBloc>(create: (context) => LogOutBloc()),
+        BlocProvider<LogOutUserBloc>(create: (context) => LogOutUserBloc()),
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'SEF',
+          theme: ThemeData(
+            primarySwatch: Colors.purple,
           ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('Disable'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('Enable'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+          home: Login()),
     );
   }
 }
-
