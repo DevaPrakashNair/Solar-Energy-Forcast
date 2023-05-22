@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seban_app/ui/inputpage.dart';
 import 'package:seban_app/ui/login.dart';
 import 'bloc/loginbloc.dart';
 import 'bloc/logoutBloc.dart';
@@ -38,7 +39,7 @@ class _AppHomeState extends State<AppHome> {
           theme: ThemeData(
             primarySwatch: Colors.purple,
           ),
-          home: Login()),
+          home: InputPage()),
     );
   }
 }

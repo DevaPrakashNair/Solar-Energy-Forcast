@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seban_app/ui/registration.dart';
-// import 'package:slookyie_max/ui/signUp.dart';
 import '../bloc/loginbloc.dart';
 import '../helper/sharedpreferences.dart';
 import 'package:flutter/src/widgets/navigator.dart';
