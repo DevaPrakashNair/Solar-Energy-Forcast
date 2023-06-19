@@ -4,9 +4,9 @@ import '../helper/sharedpreferences.dart';
 
 class WebClient {
 
-   static const ip = "http://192.168.1.105:8080";
+   //static const ip = "http://192.168.1.105:8080";
   // const ip = "http://192.168.43.187:8080";
-// static const ip = "http://192.168.49.189:8080";
+static const ip = "http://192.168.120.151:8080";
   //static const ip = "http://192.168.49.29:5555";
 //  static const ip="https://periyarproject.herokuapp.com";
 

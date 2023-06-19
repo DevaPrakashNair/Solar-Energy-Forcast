@@ -25,10 +25,10 @@ class DialogExample extends StatelessWidget {
   void _sendDataToServer() async {
     String inputValue = _textFieldController.text;
     var response = await http.post(
-      Uri.parse('http://127.0.0.1:5000/predict'),
+      Uri.parse('http://192.168.120.151:8080/predict'),
       body: {'inputValue': inputValue},
     );
-    print(response);
+    print(response.body);
   }
 
   @override

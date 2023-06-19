@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:seban_app/ui/inputpage.dart';
 import 'package:seban_app/ui/registration.dart';
 import '../bloc/loginbloc.dart';
 import '../helper/sharedpreferences.dart';
@@ -200,7 +201,7 @@ class _LoginState extends State<Login> {
                           Fluttertoast.showToast(msg: "Logged in");
                           if(state.role == 'user'){
                             {{Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                                ShowDialogExampleApp()), (Route<dynamic> route) => false);}}
+                                InputPage()), (Route<dynamic> route) => false);}}
                           }
                         //else if (state.role == 'admin'){
                             //{{Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
