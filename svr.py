@@ -15,7 +15,7 @@ def predict(input):
     i=0
 
     for x in data.columns[:-1]:
-        inputdata[x] = int(input[i])
+        inputdata[x] = float(input[i])
         i=i+1
     print(inputdata)
     input_data = pandas.DataFrame([inputdata])
