@@ -22,3 +22,4 @@ def predict(input):
 
     # print("Predicted Power: ", clf.predict(inputdata)[0])
     return str(clf.predict(input_data)[0])
+

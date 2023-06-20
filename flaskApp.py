@@ -46,4 +46,4 @@ def process_input(input_value):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.120.151', port='8080')
+    app.run(host='172.17.227.151', port='8080')

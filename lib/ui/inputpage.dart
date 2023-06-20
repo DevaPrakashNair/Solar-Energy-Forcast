@@ -18,10 +18,9 @@ class InputPage extends StatelessWidget {
   var msg = TextEditingController();
 
 
-  Future _sendDataToServer() async {
-
+  Future _sendDataToServer(context) async {
     var response = await http.post(
-      Uri.parse('http://192.168.120.151:8080/predict'),
+      Uri.parse('http://172.17.227.151:8080/predict'),
       body: {
         "field1":field1.text,
         "field2":field2.text,
@@ -34,8 +33,22 @@ class InputPage extends StatelessWidget {
         "field9":field9.text,
       },
     );
-    print(response.body);
+    // print(response.body);
     msg.text = response.body.toString();
+    print(msg.text);
+    return showDialog<void>(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: const Text(
+              "Predicted energy level"
+            ),
+            content: Text(
+              msg.text
+            ),
+          );
+        }
+    );
   }
   @override
   Widget build(BuildContext context) {
@@ -278,13 +291,20 @@ class InputPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsetsDirectional.all(15),
                 child: MaterialButton(
+                  color: Colors.purpleAccent,
                   onPressed: (){
-                    _sendDataToServer();
-                    Fluttertoast.showToast(msg: "654.87689");
+                    _sendDataToServer(context);
+                    // Fluttertoast.showToast(msg: msg.text);
                   },
-                  child: const Text("Predict the energy"),
+                  child: const Text(
+                    "Predict the energy",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900
+                    ),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),
